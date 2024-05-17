@@ -1,9 +1,11 @@
 package handler
 
 import (
+	"encoding/json"
 	"log"
 	"net/http"
 	"time"
+	"web-guardian/internal/checker"
 	"web-guardian/pkg/utils"
 )
 
@@ -15,6 +17,11 @@ func (Router) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 	path := req.URL.Path
 
 	if path == "/check" && req.Method == "POST" {
+		url := utils.GetUrl(req.Body)
+		response := checker.Check(url)
+
+		body, _ := json.Marshal(response)
+		res.Write(body)
 
 	}
 }

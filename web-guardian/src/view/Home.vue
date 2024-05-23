@@ -1,27 +1,34 @@
 <script>
+  window.addEventListener('scroll', function() {
+            const scrollAmount = window.scrollY;
+            const backgroundPositionY = scrollAmount * 0.5;
+            document.querySelector('.home').style.backgroundPositionY = `-${backgroundPositionY}px`;
+        });
 
 </script>
 
 <template >
     <div class="home">
         <div class="titulo">
-            <h1>Bem vindo ao WebGuadian</h1>
+            <h1>Web Guadian</h1>
         </div>
         <div class="container">
-            <p>Iniciar monitoramento</p>
-            <RouterLink ><button class="botao"></button></RouterLink>
+            <RouterLink to="/guardian" ><button class="botao">Comecar</button></RouterLink>
         </div>
     </div>
 </template>
 
 <style>
     .home{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100vw;
+        height: 120vh;
         background-image: url(../assets/image/background.jpg);
-        background-size: cover;
         background-position: center;
-        height: 100%;
-        padding-block: 10%;
-
+        transition: background-position 0.4s ease;
+        background-repeat: no-repeat;
     }
     
     h1{
@@ -36,24 +43,26 @@
     }
     
     .botao{
-        height: 5em;
-        width: 5em;
+        height: 4em;
+        width: 10em;
         background-color:white;
-        border-radius: 50%;
+        border-radius: 20px;
         border: 6px white gray;
     }
 
     .titulo{
-        height: 50%;
-        
-        width: 100%;
+        height: 100px;
+        position: relative;
+        width: 50%;
         display: flex;
         flex-direction: column;
+        padding: 5% 0 0 5%;
     }
 
     .container{
-        height: 100%;
         width: 100%;
+        position: absolute;
+        bottom: 0;
         display: flex;
         flex-direction: column;
         align-items: center;

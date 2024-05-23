@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import Guardian from "@/view/Guardian.vue"
 import Home from "../view/Home.vue"
 
 const router = createRouter({
@@ -7,6 +8,10 @@ const router = createRouter({
     {
       path:"/",
       component:Home
+    },
+    {
+      path: "/guardian",
+      component: Guardian
     }
   ]
 })

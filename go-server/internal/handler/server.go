@@ -12,7 +12,11 @@ import (
 type Router struct{}
 
 func (Router) ServeHTTP(res http.ResponseWriter, req *http.Request) {
-	utils.AllowCrude(res)
+
+	// Adicionando cabeçalhos CORS
+	res.Header().Set("Access-Control-Allow-Origin", "*")
+	res.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	res.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 
 	path := req.URL.Path
 
@@ -22,7 +26,6 @@ func (Router) ServeHTTP(res http.ResponseWriter, req *http.Request) {
 
 		body, _ := json.Marshal(response)
 		res.Write(body)
-
 	}
 }
 

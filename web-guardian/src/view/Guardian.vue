@@ -1,29 +1,9 @@
-<script setup>
-const formulario = document.getElementById("form")
-
-const data = ""
-const options = {
-        method: "POST",
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body: JSON.stringify(data)
-    }
-
-const RunService = () =>{
-    fetch("127.0.0.1:8080",options).then(response => data)
-}
-
-    
-    
-</script>
-
 <template>
     <div class="container">
-        <form id="form" @submit.prevent="RunService">
+        <form class="form" @submit.prevent="handleSubmit    ">
             <label for="url"><strong>URL:</strong></label>
-            <input v-model="data" id="url" type="text">
-            <input type="submit">
+            <input name="url" id="url" type="text">
+            <input type="submit" value="Submit">
         </form>
     </div>
 </template>
@@ -61,3 +41,26 @@ const RunService = () =>{
     }
 
 </style>
+
+<script setup>
+
+const handleSubmit = () => {
+  const formEl = document.querySelector(".form");
+  const formData = new FormData(formEl);
+  console.log(formData.get('url'));
+  const data = Object.fromEntries(formData);
+  fetch("http://127.0.0.1:8080/check", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  }).then(response => response.json())
+    .then(result => {
+      console.log(result);
+    })
+    .catch(error => {
+      console.error('Erro:', error);
+    });
+}
+</script>

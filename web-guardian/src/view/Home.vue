@@ -47,7 +47,7 @@
         width: 10em;
         background-color:white;
         border-radius: 20px;
-        border: 6px white gray;
+        border: 6px white solid;
     }
 
     .titulo{

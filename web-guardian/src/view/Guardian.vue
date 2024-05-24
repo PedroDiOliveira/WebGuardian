@@ -1,33 +1,73 @@
 <template>
-    <div class="container">
-        <form class="form" @submit.prevent="handleSubmit    ">
-            <label for="url"><strong>URL:</strong></label>
+<div class="container">
+    <div class="body">
+      <div class="titulo">
+        <RouterLink class="router" to="/"><h1>Guardian</h1></RouterLink>
+      </div>
+        <div class="content">
+          <form class="form" @submit.prevent="handleSubmit">
+            <label for="url">Digite a URL desejada:</label>
             <input name="url" id="url" type="text">
             <input type="submit" value="Submit">
-        </form>
+          </form>
+          <div class="response">
+            <div id="code"></div>
+            <div id="desc"></div>
+          </div>
+        </div>
     </div>
+  </div>
 </template>
 
 <style scoped>
     .container{
         height: 100vh;
         width: 100vw;
-        background-color: gray;
+        background-color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
 
+    .content{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .body{
+      background-color: gray;
+      border-radius: 20px;
+      height: 85%;
+      width: 35%;
+      display: flex;
+      flex-direction: column ;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    p{
+      width: 90px;
+    }
+
+    .response{
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-bottom: 20%;
+    }
+
     form{
-        background-color: black;
-        height: 400px;
-        width:400px ;
-        border-radius: 20px;
-        padding: 10px;
         display: flex;
         flex-direction: column;
-        align-items: center
+        align-items: center;
+        gap: 20px;
+    }
+
+    .titulo{
+      display: flex;
+      align-items: center;
     }
 
     label{
@@ -36,8 +76,12 @@
     }
 
     input{
-        height: 30px;
+        height: 40px;
         width: 320px;
+    }
+
+    .router{
+      text-decoration: none;
     }
 
 </style>
@@ -55,12 +99,31 @@ const handleSubmit = () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(data)
-  }).then(response => response.json())
-    .then(result => {
-      console.log(result);
+  }).then(req => req.json())
+    .then(response => {
+      DisplayElements(response)
     })
     .catch(error => {
       console.error('Erro:', error);
     });
+}
+
+function DisplayElements(data){
+  const codeDiv = document.getElementById('code');
+  const descDiv = document.getElementById('desc');
+
+  //limpa as divs para receber novos dados
+  codeDiv.innerHTML = '';
+  descDiv.innerHTML = '';
+
+  //codigo
+  const code = document.createElement('h4');
+  code.textContent = `Code : ${data.code}`;
+  codeDiv.appendChild(code)
+
+  //desc
+  const desc = document.createElement('p');
+  desc.textContent = `Desc : ${data.desc}`;
+  descDiv.appendChild(desc)
 }
 </script>

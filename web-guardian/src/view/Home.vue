@@ -24,7 +24,7 @@
         flex-direction: column;
         justify-content: space-between;
         width: 100vw;
-        height: 120vh;
+        height: 110vh;
         background-image: url(../assets/image/background.jpg);
         background-position: center;
         transition: background-position 0.4s ease;

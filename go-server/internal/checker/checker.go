@@ -11,10 +11,6 @@ type errorMessage struct {
 	Err string `json:"err"`
 }
 
-var mensagem errorMessage = 
-
-mensagem.Err = "Invalid URL"
-
 var messages = map[int]HTTPMessage{
 	404: {Code: 404, Description: "Not found"},
 	200: {Code: 200, Description: "Online Server"},

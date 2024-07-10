@@ -18,15 +18,16 @@
     </div>
 </template>
 
-<style>
+<style scoped>
     .home{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         width: 100vw;
-        height: 110vh;
+        height: 100vh;
         background-image: url(../assets/image/background.jpg);
         background-position: center;
+        background-size: cover;
         transition: background-position 0.4s ease;
         background-repeat: no-repeat;
     }

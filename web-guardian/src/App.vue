@@ -1,11 +1,13 @@
 <script setup>
 
+import cabecalho from "../src/components/header.vue"
+
 </script>
 
 <template>
-    <RouterView/>
+        <cabecalho/>
+        <RouterView/>
 </template>
 
 <style scoped>
-
 </style>
